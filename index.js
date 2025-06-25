@@ -1,115 +1,70 @@
-const form = document.getElementById("guest-form");
-const guestNameInput = document.getElementById("guest-name");
-const categorySelect = document.getElementById("guest-category");
+const guestForm = document.getElementById("guest-form");
+const guestInput = document.getElementById("guest-name")
 const guestList = document.getElementById("guest-list");
 
-let guests = [];
+//Number of guests
+let guestCount = 0;
 
-const categoryColors = {
-  Friend: "blue",
-  Family: "green",
-  Colleague: "orange"
-};
+//Add guest to list
+guestForm.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const name = guestNameInput.value.trim();
-  const category = categorySelect.value;
+    // Get the guest name from the input field
+    const guestName = guestInput.value.trim();
 
-  if (name === "") return;
+    // Check if the input is empty
+    if (!guestName) {
+        alert("Please enter a name!")
+    }
 
-  if (guests.length >= 10) {
-    alert("Guest limit reached (10 guests max).");
-    return;
-  }
+    // Guest Limit
+    if (guestCount >= 10) {
+        alert('Guest limit reached!');
+        return;
+    }
 
-  const guest = {
-    id: Date.now(),
-    name,
-    rsvp: false,
-    category,
-    timeAdded: new Date().toLocaleTimeString()
-  };
+    //Create a new list
+    const listItem = document.createElement("li");
 
-  guests.push(guest);
-  guestNameInput.value = "";
-  saveGuests();
-  renderGuests();
+    // Guest name
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = guestName;
+
+// Add RSVP
+const rsvpBtn = document.createElement("button");
+rsvpBtn.textContent = "❌ Not Attending"; 
+rsvpBtn.addEventListener("click", function() {
+    if(rsvpBtn.textContent.includes("❌"))
+    {
+        rsvpBtn.textContent = "✅ Attending";
+    } else {
+        rsvpBtn.textContent = "❌ Not Attending"
+    }
 });
 
-function renderGuests() {
-  guestList.innerHTML = "";
+    // Add Edit button
+const editBtn = document.createElement("button");
+editBtn.textContent = "Edit";
+editBtn.addEventListener("click", () => {
+    const newName = prompt("Edit guest name:", guestName);
+    if (newName) listItem.textContent = newName;
+});
 
-  guests.forEach(guest => {
-    const li = document.createElement("li");
+// Add remove button
+const removeBtn = document.createElement("button");
+removeBtn.textContent = "Remove";
+removeBtn.addEventListener("click", () => {
+    guestList.removeChild(listItem);
+    guestCount--;
+});
 
-    // Guest Info
-    const guestInfo = document.createElement("span");
-    guestInfo.textContent = `${guest.name} - ${guest.rsvp ? "Attending" : "Not Attending"}`;
-    guestInfo.addEventListener("click", () => {
-      guest.rsvp = !guest.rsvp;
-      saveGuests();
-      renderGuests();
-    });
+    // Append the new list item to the guest list
+    listItem.append(nameSpan, rsvpBtn, editBtn, removeBtn);
+    guestList.appendChild(listItem);
 
-    // Category Badge
-    const badge = document.createElement("span");
-    badge.textContent = guest.category;
-    badge.classList.add("badge");
-    badge.style.color = categoryColors[guest.category];
+    // Clear the input field
+    guestInput.value = "";
 
-    // Time
-    const time = document.createElement("small");
-    time.textContent = `Added at: ${guest.timeAdded}`;
-
-    // Edit Button
-    const editBtn = document.createElement("button");
-    editBtn.textContent = "Edit";
-    editBtn.addEventListener("click", () => {
-      const newName = prompt("Enter new name:", guest.name);
-      if (newName) {
-        guest.name = newName.trim();
-        saveGuests();
-        renderGuests();
-      }
-    });
-
-    // Remove Button
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove";
-    removeBtn.addEventListener("click", () => {
-      guests = guests.filter(g => g.id !== guest.id);
-      saveGuests();
-      renderGuests();
-    });
-
-    // Assemble
-    const infoWrapper = document.createElement("div");
-    infoWrapper.append(guestInfo, document.createElement("br"), badge, time);
-
-    const controlsWrapper = document.createElement("div");
-    controlsWrapper.append(editBtn, removeBtn);
-
-    li.append(infoWrapper, controlsWrapper);
-    li.style.display = "flex";
-    li.style.justifyContent = "space-between";
-    li.style.alignItems = "center";
-
-    guestList.appendChild(li);
-  });
-}
-
-function saveGuests() {
-  localStorage.setItem("guests", JSON.stringify(guests));
-}
-
-function loadGuests() {
-  const saved = localStorage.getItem("guests");
-  if (saved) {
-    guests = JSON.parse(saved);
-    renderGuests();
-  }
-}
-
-window.addEventListener("DOMContentLoaded", loadGuests);
-// Add CSS styles for badges
+    // Increment the guest count
+    guestCount++;
+});
