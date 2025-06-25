@@ -1,172 +1,36 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #d90e0e;
-    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: whitesmoke;
+    margin: 20px;
+    line-height: 1.7;
 }
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
+h1 {
+    text-align: center;
+    color: goldenrod;
 }
-
-form {
+#guest-form {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: center;
 }
-
-#guest-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+#guest-name {
+    padding: 7px;
+    border: 1px solid olive;
 }
-
-#guest-list span {
-    cursor: pointer;
-}
-
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background: #0056b3;
+#guest-form button:hover {
+background: grey;
 }
 #guest-list {
     list-style: none;
-    padding: 0;
+    max-width: 300px;
+    margin: auto;
 }
 #guest-list li {
+    background: white;
+    padding: 12px;
+    box-shadow: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-}
-#guest-list span {
-    cursor: pointer;
-    color: #007bff;
-}
-#guest-list span:hover {
-    text-decoration: underline;
-}
-#guest-list li span {
-    color: #dc3545;
-}
-#guest-list li span:hover {
-    color: #c82333;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.delete:hover {
-    text-decoration: underline;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.edit:hover {
-    text-decoration: underline;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
-}
-#guest-list li span.delete {
-    color: #dc3545;
-}
-#guest-list li span.edit {
-    color: #007bff;
-}
-#guest-list li span.delete:hover {
-    color: #c82333;
-}
-#guest-list li span.edit:hover {
-    color: #0056b3;
 }
